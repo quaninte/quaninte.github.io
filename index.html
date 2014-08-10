@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://pixelcoder.net/persona/# -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quan MT</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link type="text/css" href="./files/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="./files/bootstrap-theme.min.css" rel="stylesheet">
+
+    <meta name="description" content="Quan MT's personal website, Founder & CEO of Brodev" />
+    <meta name="keywords" content="Quan MT, Trương Mạnh Quân, quaninte, Brodev" />
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link type="text/css" href="./files/persona_icon.css" rel="stylesheet">
+    <link type="text/css" href="./files/style.css" rel="stylesheet">
+    <link type="text/css" href="./files/responsive.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css"></style>
+</head>
+<body>
+<div class="body_back">
+    <div class="main_content_area">
+        <div id="body_hover" style="display: none;"></div>
+        <section class="profile_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="profile_inner">
+                            <div class="profile_picture">
+                                <a href="">
+                                    <img src="http://www.gravatar.com/avatar/f2b123c5cd6ab6b04536dc8538a869a4?s=120"
+                                         alt="Quan MT">
+                                </a>
+                            </div>
+                            <h2><a href="">Hello, I'm Quan MT</a></h2>
+
+                            <p>I build stuff, market stuff & sell stuff <br/>
+                                ...kind of startup stuff</p>
+
+                            <div class="social_icon">
+                                <a target="_blank" href="http://www.brodev.com"
+                                   class="fa fa-trophy"></a>
+                                <a target="_blank" href="https://www.facebook.com/quaninte"
+                                   class="fa fa-facebook-square"></a>
+                                <a target="_blank" href="https://twitter.com/quaninte" class="fa fa-twitter"></a>
+                                <a target="_blank" href="https://www.linkedin.com/in/quaninte"
+                                   class="fa fa-linkedin"></a>
+                                <a target="_blank" href="http://20startup.com" class="fa fa-tumblr"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="home_page_post_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="home_single_post">
+                            <div class="post_content_area">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                                        <div class="single_post_content">
+                                            <h2>My writings</h2>
+
+                                            <ul class="writings">
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script type="text/javascript" src="./files/jquery.js"></script>
+<script type="text/javascript" src="./files/bootstrap.min.js"></script>
+
+<script type="text/javascript" language="javascript">
+    $(function() {
+        var feedUrl = 'http://20startup.com/rss';
+        $.ajax({
+            url      : document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(feedUrl),
+            dataType : 'json',
+            success  : function (data) {
+                if (data.responseData.feed && data.responseData.feed.entries) {
+                    $.each(data.responseData.feed.entries, function (i, e) {
+                        insertPost(e);
+                    });
+                }
+            }
+        });
+    });
+
+    function insertPost(e)
+    {
+        var postTpl = '<li><div class="post-title"><a target="_blank" href="%link%">%title%</a></div>' +
+                '<div class="date_area">%time%</div></li>';
+
+        var postContent = postTpl;
+        postContent = postContent.replace('%link%', e.link);
+        postContent = postContent.replace('%title%', e.title);
+        postContent = postContent.replace('%time%', e.publishedDate);
+
+        $('.writings').append(postContent);
+    }
+</script>
+
+</body>
+</html>
