@@ -16,7 +16,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link type="text/css" href="./files/persona_icon.css" rel="stylesheet">
-    <link type="text/css" href="./files/style.css" rel="stylesheet">
+    <link type="text/css" href="./files/style.css?v2" rel="stylesheet">
     <link type="text/css" href="./files/responsive.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,7 +48,13 @@
                             <h2><a href="">Hello, I'm Quan MT</a></h2>
 
                             <p>I build stuff, market stuff & sell stuff <br/>
-                                ...kind of startup stuff</p>
+                                ...kind of startup stuff.
+                                </p><p>
+                                <br />
+                                Currently running <a href="https://beeketing.com" target="_blank">Beeketing</a> to help entrepreuneur globally.
+                                <br /><br />
+                                </p><p>
+                                I founded 4 companies (1 active, 1 exit, 2 closed). Proud to be #500Strong, Forbes VN 30 under 30.</p
 
                             <div class="social_icon">
                                 <a target="_blank" href="https://beeketing.com"
@@ -93,20 +99,30 @@
 <script type="text/javascript" src="./files/jquery.js"></script>
 <script type="text/javascript" src="./files/bootstrap.min.js"></script>
 
+
 <script type="text/javascript" language="javascript">
     $(function() {
         var feedUrl = 'http://20startup.com/rss';
+
         $.ajax({
-            url      : document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(feedUrl),
-            dataType : 'json',
-            success  : function (data) {
-                if (data.responseData.feed && data.responseData.feed.entries) {
-                    $.each(data.responseData.feed.entries, function (i, e) {
+            url: "http://query.yahooapis.com/v1/public/yql",
+            jsonp: "callback",
+            dataType: "jsonp",
+            data: {
+                q: "select * from xml where url='" + feedUrl + "'",
+                format: "json"
+            },
+            success: function( data ) {
+                var entries = data.query.results.rss.channel.item;
+
+                if (entries) {
+                    $.each(entries, function (i, e) {
                         insertPost(e);
                     });
                 }
             }
         });
+
     });
 
     function insertPost(e)
@@ -117,7 +133,7 @@
         var postContent = postTpl;
         postContent = postContent.replace('%link%', e.link);
         postContent = postContent.replace('%title%', e.title);
-        postContent = postContent.replace('%time%', e.publishedDate);
+        postContent = postContent.replace('%time%', e.pubDate);
 
         $('.writings').append(postContent);
     }
