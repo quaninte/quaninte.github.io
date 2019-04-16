@@ -106,21 +106,15 @@
 
 <script type="text/javascript" language="javascript">
     $(function() {
-        var feedUrl = 'http://20startup.com/rss';
+        var feedUrl = 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2F20startup.com%2Frss&api_key=f56nhfsrmbriq1dtlgttk0pqm2pu7u0h9hm5yidj';
 
         $.ajax({
-            url: "http://query.yahooapis.com/v1/public/yql",
+            url: feedUrl,
             jsonp: "callback",
             dataType: "jsonp",
-            data: {
-                q: "select * from xml where url='" + feedUrl + "'",
-                format: "json"
-            },
             success: function( data ) {
-                var entries = data.query.results.rss.channel.item;
-
-                if (entries) {
-                    $.each(entries, function (i, e) {
+                if (data.items) {
+                    $.each(data.items, function (i, e) {
                         insertPost(e);
                     });
                 }
