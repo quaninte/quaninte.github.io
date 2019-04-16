@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quan MT</title>
+    <title>Quan Truong</title>
     <link rel="shortcut icon" href="./favicon.ico" />
     <link type="text/css" href="./files/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" href="./files/bootstrap-theme.min.css" rel="stylesheet">
 
-    <meta name="description" content="Quan MT's personal website, Founder & CEO of Beeketing" />
-    <meta name="keywords" content="Quan MT, Trương Mạnh Quân, quaninte, Beeketing, Brodev" />
+    <meta name="description" content="Quan Truong's personal website, Founder & CEO of Beeketing" />
+    <meta name="keywords" content="Quan Truong, Trương Mạnh Quân, quaninte, Beeketing, Brodev" />
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -42,14 +42,12 @@
                             <div class="profile_picture">
                                 <a href="">
                                     <img src="http://www.gravatar.com/avatar/119c1715766fc36e246106db2c03ecc6?s=120"
-                                         alt="Quan MT">
+                                         alt="Quan Truong">
                                 </a>
                             </div>
-                            <h2><a href="">Hello, I'm Quan MT</a></h2>
+                            <h2><a href="">Hello, I'm Quan Truong</a></h2>
 
-                            <p>I build stuff, market stuff & sell stuff <br/>
-                                ...kind of startup stuff.
-                                </p>
+                            <p>A passionate e-commerce start-up founder</p>
 
                             <div class="social_icon">
                                 <a target="_blank" href="https://beeketing.com"
@@ -62,10 +60,7 @@
                             </div>
 
                                 <p>
-
-
-                                <br />
-                                Currently running <a href="https://beeketing.com" target="_blank">Beeketing</a> to help entrepreuneur globally.
+                                Currently running <a href="https://beeketing.com" target="_blank">Beeketing</a> to help entrepreuneurs globally.
                                 <br />
                                 </p><p>
                                 I founded 4 companies (1 active, 1 exit, 2 closed). Proud to be #500Strong, Forbes VN 30 under 30.</p>
@@ -102,7 +97,7 @@
 </div>
 <script type="text/javascript" src="./files/jquery.js"></script>
 <script type="text/javascript" src="./files/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script type="text/javascript" language="javascript">
     $(function() {
@@ -131,7 +126,9 @@
         var postContent = postTpl;
         postContent = postContent.replace('%link%', e.link);
         postContent = postContent.replace('%title%', e.title);
-        postContent = postContent.replace('%time%', e.pubDate);
+
+        var ts = moment(e.pubDate);
+        postContent = postContent.replace('%time%', ts.fromNow());
 
         $('.writings').append(postContent);
     }
